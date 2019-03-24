@@ -1,0 +1,25 @@
+{
+    "name": "glenwell/frontend-module",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Modules\\FrontEnd\\Providers\\FrontEndServiceProvider"
+            ],
+            "aliases": {
+                
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\FrontEnd\\": "src"
+        }
+    }
+}
