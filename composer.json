@@ -1,12 +1,13 @@
 {
     "name": "glenwell/frontend-module",
-    "description": "",
+    "description": "Frontend module for admin module",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Josh Danns",
+            "email": "dannsj@gmail.com"
         }
     ],
+    "type": "laravel-module",
     "extra": {
         "laravel": {
             "providers": [
