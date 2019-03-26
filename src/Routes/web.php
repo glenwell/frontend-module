@@ -12,3 +12,10 @@
 */
 
 Route::get('/', 'FrontEndController@index');
+Route::get('post', 'FrontEndController@show');
+Route::get('story/{slug}', 'FrontEndController@post');
+
+Route::group(['as' => 'frontend.'], function () {
+    //Asset Routes
+    Route::get('assets', ['uses' => 'FrontEndController@assets', 'as' => 'assets']);
+});

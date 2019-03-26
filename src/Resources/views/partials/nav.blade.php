@@ -7,7 +7,7 @@
     <div class="container">
         <!-- Begin Logo -->
         <a class="navbar-brand" href="/">
-        <img src="{{asset('frontend/img/logo.png')}}" alt="logo">
+        <img src="{{frontend_asset('img/logo.png')}}" alt="logo">
         </a>
         <!-- End Logo -->
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
@@ -17,7 +17,7 @@
                     <a class="nav-link" href="{{url('/')}}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Category 1</a>
+                    <a class="nav-link" href="/post">Post</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/">Category 2</a>

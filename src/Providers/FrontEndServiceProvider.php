@@ -36,6 +36,7 @@ class FrontEndServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(RouteServiceProvider::class);
+        $this->registerHelpers();
     }
 
     /**
@@ -98,6 +99,16 @@ class FrontEndServiceProvider extends ServiceProvider
     {
         if (! app()->environment('production')) {
             app(Factory::class)->load(__DIR__ . '/../Database/factories');
+        }
+    }
+
+    /**
+     * Load helpers.
+     */
+    protected function registerHelpers()
+    {
+        foreach (glob(__DIR__.'/../Helpers/*.php') as $filename) {
+            require_once $filename;
         }
     }
 
