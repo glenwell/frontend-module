@@ -7,6 +7,8 @@ use Illuminate\Http\Response;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Modules\Admin\Models\Post;
+use Modules\Admin\Models\Page;
+use Modules\Admin\Models\Category;
 use Illuminate\Database\Eloquent\Collection;
 
 class FrontEndController extends Controller
@@ -23,26 +25,61 @@ class FrontEndController extends Controller
         $recentPosts     =   Post::whereNotIn('id', $featuredPosts->pluck('id'))->orderBy('created_at', 'desc')->take(5)->get();
         $allPosts        =   Post::whereNotIn('id', $recentPosts->pluck('id')->merge($featuredPosts->pluck('id')))->orderBy('created_at', 'desc')->get();
 
+        $categories = Category::orderBy('created_at', 'desc')->take(4)->get();
+
         return view('frontend::index')->with([
             'posts' => $this->slicePosts($allPosts, 3),
             'featuredPosts' => $featuredPosts,
-            'recentPosts' => $recentPosts
+            'recentPosts' => $recentPosts,
+            'categories' => $categories
         ]);
-    }
-
-    /**
-     * Show the specified resource.
-     * @return Response
-     */
-    public function show()
-    {
-        return view('frontend::post');
     }
 
     public function post(Request $request, string $slug)
     {
-        $post = Post::where('slug', $slug)->first();
+        $post = Post::where('slug', $slug)->firstOrFail();
         return view('frontend::post')->with(['post' => $post]);
+    }
+
+    public function page(Request $request, string $slug)
+    {
+        $page = Page::where('slug', $slug)->firstOrFail();
+        return view('frontend::page')->with(['page' => $page]);
+    }
+
+    public function categories(Request $request)
+    {
+        $categories = Category::all();
+        return view('frontend::categories')->with(['categories' => $categories]);
+    }
+
+    public function category(Request $request, string $slug)
+    {
+        $category = Category::where('slug', $slug)->firstOrFail();
+        
+        $recentPosts     =   Post::where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+        
+        $allPosts        =   Post::whereNotIn('id', $recentPosts->pluck('id'))
+            ->where('category_id', $category->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        $categories = Category::where('id', '!=', $category->id)
+        ->orderBy('created_at', 'desc')
+        ->take(4)
+        ->get();
+
+        return view('frontend::category')->with([
+            'posts' => $allPosts,
+            'recentPosts' => $recentPosts,
+            'category' => $category,
+            'categories' => $categories
+        ]);
+
+        return view('frontend::category');
     }
 
     public function slicePosts(Collection $posts, int $factor)

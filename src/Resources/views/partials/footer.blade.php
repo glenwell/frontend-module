@@ -4,7 +4,7 @@
         Copyright &copy; {{\Carbon\Carbon::now()->year.' '.setting('site.title', config('app.name'))}}
     </p>
     <p class="pull-right">
-        <a target="_blank" href="/">Privacy Policy</a>
+        <a target="_blank" href="/">Footer Link</a>
     </p>
     <div class="clearfix">
     </div>

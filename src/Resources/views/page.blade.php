@@ -29,42 +29,32 @@
         <div class="col-md-8 col-md-offset-2 col-xs-12">
             <div class="mainheading">
                 <!-- Begin Top Meta -->
-                <div class="row post-top-meta">
+                {{-- <div class="row post-top-meta">
                     <div class="col-md-2">
-                        <a href="author.html"><img class="author-thumb" src="{{ filter_var($post->author->avatar, FILTER_VALIDATE_URL) ? $post->author->avatar : Voyager::image($post->author->avatar, "", ["template" => "dynamic", "params" => ["w" => 200, "h" => 200]]) }}" alt="Sal"></a>
+                        <a href="author.html"><img class="author-thumb" src="{{ filter_var($page->author->avatar, FILTER_VALIDATE_URL) ? $page->author->avatar : Voyager::image($page->author->avatar, "", ["template" => "dynamic", "params" => ["w" => 200, "h" => 200]]) }}" alt="Sal"></a>
                     </div>
                     <div class="col-md-10">
-                        <a class="link-dark" href="author.html">{{$post->author->name}}</a>
+                        <a class="link-dark" href="author.html">{{$page->author->name}}</a>
                         <span class="author-description">Description of the author in question and how many accolades he/she has won over the years</span>
-                        <span class="post-date">{{\Carbon\Carbon::parse($post->created_at)->toFormattedDateString()}}</span><span class="dot"></span><span class="post-read">6 min read</span>
+                        <span class="post-date">{{\Carbon\Carbon::parse($page->created_at)->toFormattedDateString()}}</span><span class="dot"></span><span class="post-read">6 min read</span>
                     </div>
-                </div>
+                </div> --}}
                 <!-- End Top Menta -->
-                <h1 class="posttitle">{{$post->title}}</h1>
+                <h1 class="posttitle">{{$page->title}}</h1>
             </div>
             @php
                 $imageParams = ["template" => "dynamic", "params" => ["w" => 1000, "h" => 563]];
             @endphp
             <!-- Begin Featured Image -->
-            <img class="featured-image img-fluid" src="{{ filter_var($post->image, FILTER_VALIDATE_URL) ? $post->image : Voyager::image($post->image, "", $imageParams) }}" alt="">
+            <img class="featured-image img-fluid" src="{{ filter_var($page->image, FILTER_VALIDATE_URL) ? $page->image : Voyager::image($page->image, "", $imageParams) }}" alt="">
             <!-- End Featured Image -->
             <!-- Begin Post Content -->
             <div class="article-post">
                 <article>
-                    {!! $post->body !!}
+                    {!! $page->body !!}
                 </article>
             </div>
             <!-- End Post Content -->
-            {{-- <!-- Begin Tags -->
-            <div class="after-post-tags">
-                <ul class="tags">
-                    <li><a href="#">Design</a></li>
-                    <li><a href="#">Growth Mindset</a></li>
-                    <li><a href="#">Productivity</a></li>
-                    <li><a href="#">Personal Growth</a></li>
-                </ul>
-            </div>
-            <!-- End Tags --> --}}
         </div>
         <!-- End Post -->
     </div>    

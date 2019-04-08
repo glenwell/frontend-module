@@ -23,4 +23,10 @@
 	@include('frontend::partials.home.all')
 	<!-- End List Posts
 		================================================== -->
+
+	<!-- Begin List Posts
+	================================================== -->
+	@include('frontend::partials.home.categories', ['categoryTitle' => "Featured Categories"])
+	<!-- End List Posts
+		================================================== -->
 @stop
